@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Förderung der Hausarztmedizin in Bayern e.V. – Wir unterstützen Medizinstudentinnen und -studenten an bayerischen Fakultäten." />
+  <title>Förderung der Hausarztmedizin in Bayern e.V.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green-dark:  #1d4a2f;
+      --green-mid:   #2e6b45;
+      --green-light: #4a9263;
+      --green-pale:  #e8f2ec;
+      --cream:       #f7f4ef;
+      --warm-white:  #fdfcfa;
+      --text-dark:   #1a1a1a;
+      --text-mid:    #3d4a40;
+      --text-light:  #6b7c6e;
+      --accent:      #c8873c;
+      --border:      #d8e4db;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--warm-white);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(253,252,250,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 64px;
+    }
+    .nav-logo {
+      font-family: 'Lora', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--green-dark);
+      text-decoration: none;
+      line-height: 1.3;
+      max-width: 220px;
+    }
+    .nav-links {
+      display: flex; gap: 0.25rem; list-style: none;
+      flex-wrap: wrap; justify-content: flex-end;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      padding: 0.4rem 0.7rem;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-links a:hover { background: var(--green-pale); color: var(--green-dark); }
+
+    .nav-burger { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+    .nav-burger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--green-dark); border-radius: 2px;
+      margin: 4px 0; transition: 0.3s;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: var(--green-dark);
+      position: relative; overflow: hidden;
+      padding: 7rem 2rem 6rem;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(74,146,99,0.25) 0%, transparent 65%),
+                  radial-gradient(ellipse at 10% 80%, rgba(200,135,60,0.1) 0%, transparent 50%);
+    }
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto;
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(74,146,99,0.25);
+      color: #8ecba1;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.85rem; border-radius: 100px;
+      margin-bottom: 1.25rem;
+      border: 1px solid rgba(74,146,99,0.3);
+    }
+    .hero h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: #8ecba1;
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600; font-size: 0.95rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: 8px;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .hero-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+    .hero-cta svg { width: 16px; height: 16px; }
+
+    .hero-visual {
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .hero-stat-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 1.25rem 1.5rem;
+      backdrop-filter: blur(8px);
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .hero-stat-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: rgba(74,146,99,0.3);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .hero-stat-icon svg { width: 22px; height: 22px; color: #8ecba1; }
+    .hero-stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-bottom: 0.1rem; }
+    .hero-stat-value { font-size: 1.05rem; font-weight: 600; color: #fff; }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 5rem 2rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--green-light);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700; color: var(--green-dark);
+      margin-bottom: 1rem; line-height: 1.25;
+    }
+    .section-body {
+      font-size: 1.05rem; color: var(--text-mid);
+      line-height: 1.75; max-width: 680px;
+    }
+
+    /* ─── MOTTO BANNER ─── */
+    .motto-banner {
+      background: var(--green-pale);
+      border-left: 4px solid var(--green-light);
+      border-radius: 0 12px 12px 0;
+      padding: 1.5rem 2rem;
+      margin: 2.5rem 0;
+      max-width: 680px;
+    }
+    .motto-banner strong {
+      display: block;
+      font-family: 'Lora', serif;
+      font-size: 1.25rem;
+      color: var(--green-dark);
+      font-style: italic;
+      margin-bottom: 0.4rem;
+    }
+    .motto-banner p { font-size: 0.95rem; color: var(--text-light); }
+
+    /* ─── CARD GRID ─── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+    .card {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+      display: flex; flex-direction: column; gap: 0.75rem;
+      cursor: pointer;
+    }
+    .card:hover {
+      box-shadow: 0 8px 32px rgba(29,74,47,0.12);
+      transform: translateY(-3px);
+      border-color: var(--green-light);
+    }
+    .card-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--green-pale);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .card-icon svg { width: 22px; height: 22px; color: var(--green-mid); }
+    .card h3 {
+      font-family: 'Lora', serif;
+      font-size: 1.05rem; font-weight: 600;
+      color: var(--green-dark);
+    }
+    .card p { font-size: 0.9rem; color: var(--text-light); line-height: 1.6; flex: 1; }
+    .card-arrow {
+      font-size: 0.85rem; font-weight: 600;
+      color: var(--green-light);
+      display: flex; align-items: center; gap: 0.3rem;
+      margin-top: 0.5rem;
+    }
+
+    /* ─── CONTENT SECTIONS (shown/hidden) ─── */
+    .content-section {
+      display: none; animation: fadeIn 0.35s ease;
+    }
+    .content-section.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ─── DIVIDER ─── */
+    .divider {
+      border: none; border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* ─── SATZUNG / TEXT CONTENT ─── */
+    .prose {
+      max-width: 760px;
+      font-size: 1rem; color: var(--text-mid); line-height: 1.8;
+    }
+    .prose h3 {
+      font-family: 'Lora', serif;
+      font-size: 1.2rem; font-weight: 600;
+      color: var(--green-dark); margin: 2rem 0 0.6rem;
+    }
+    .prose p { margin-bottom: 1rem; }
+    .prose ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+    .prose ul li { margin-bottom: 0.4rem; }
+
+    /* ─── TEAM GRID ─── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.25rem; margin-top: 2rem;
+    }
+    .team-card {
+      background: var(--cream);
+      border-radius: 16px; padding: 1.5rem 1.25rem;
+      text-align: center;
+    }
+    .team-avatar {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--green-pale);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem;
+      font-family: 'Lora', serif;
+      font-size: 1.3rem; font-weight: 700;
+      color: var(--green-mid);
+    }
+    .team-name { font-weight: 600; font-size: 0.95rem; color: var(--text-dark); }
+    .team-role { font-size: 0.82rem; color: var(--text-light); margin-top: 0.2rem; }
+
+    /* ─── JOIN SECTION ─── */
+    .join-section {
+      background: var(--green-dark);
+      border-radius: 24px;
+      padding: 3.5rem;
+      color: #fff;
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .join-section h2 {
+      font-family: 'Lora', serif;
+      font-size: 1.8rem; margin-bottom: 1rem;
+    }
+    .join-section p {
+      color: rgba(255,255,255,0.7);
+      max-width: 520px; margin: 0 auto 2rem;
+      line-height: 1.7;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--accent); color: #fff;
+      text-decoration: none; font-weight: 600; font-size: 0.95rem;
+      padding: 0.85rem 1.75rem; border-radius: 8px;
+      transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      text-decoration: none; font-weight: 500; font-size: 0.95rem;
+      padding: 0.85rem 1.75rem; border-radius: 8px;
+      transition: background 0.2s;
+      margin-left: 0.75rem;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.18); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--cream);
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: flex-start;
+      flex-wrap: wrap; gap: 2rem;
+    }
+    .footer-brand {
+      font-family: 'Lora', serif;
+      font-size: 0.95rem; font-weight: 600;
+      color: var(--green-dark); max-width: 200px;
+    }
+    .footer-copy {
+      font-size: 0.8rem; color: var(--text-light); margin-top: 0.5rem;
+    }
+    .footer-links { display: flex; flex-direction: column; gap: 0.4rem; }
+    .footer-links a {
+      font-size: 0.85rem; color: var(--text-mid);
+      text-decoration: none;
+    }
+    .footer-links a:hover { color: var(--green-dark); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-visual { display: none; }
+      .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; background: var(--warm-white); flex-direction: column; padding: 1rem; border-bottom: 1px solid var(--border); gap: 0; }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 0.7rem 1rem; border-radius: 8px; }
+      .nav-burger { display: block; }
+      .join-section { padding: 2.5rem 1.5rem; }
+      .btn-secondary { margin-left: 0; margin-top: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo" onclick="showSection('home')">Förderung der<br>Hausarztmedizin in Bayern</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" onclick="showSection('verein'); return false;">Der Förderverein</a></li>
+      <li><a href="#" onclick="showSection('vorstand'); return false;">Vorstandschaft</a></li>
+      <li><a href="#" onclick="showSection('beirat'); return false;">Wiss. Beirat</a></li>
+      <li><a href="#" onclick="showSection('satzung'); return false;">Satzung</a></li>
+      <li><a href="#" onclick="showSection('beitraege'); return false;">Beitragsordnung</a></li>
+      <li><a href="#" onclick="showSection('beitritt'); return false;">Beitrittserklärung</a></li>
+      <li><a href="#" onclick="showSection('kontakt'); return false;">Kontakt</a></li>
+    </ul>
+    <button class="nav-burger" id="burger" aria-label="Menü öffnen" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MAIN CONTENT WRAPPER -->
+<main>
+
+  <!-- ── HOME ── -->
+  <div id="section-home" class="content-section active">
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-inner">
+        <div>
+          <span class="hero-tag">Förderverein Bayern e.V.</span>
+          <h1>Hausarztmedizin lernen –<br><em>nah am Menschen,<br>nah am Land.</em></h1>
+          <p class="hero-sub">Wir fördern Medizinstudentinnen und -studenten an bayerischen Fakultäten, die den hausärztlichen Alltag vor Ort früh kennenlernen möchten.</p>
+          <a href="#verein" class="hero-cta" onclick="showSection('verein'); return false;">
+            Mehr erfahren
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-stat-card">
+            <div class="hero-stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div>
+              <div class="hero-stat-label">Zielgruppe</div>
+              <div class="hero-stat-value">Medizinstudierende in Bayern</div>
+            </div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <div>
+              <div class="hero-stat-label">Schwerpunkt</div>
+              <div class="hero-stat-value">Hausarztmedizin auf dem Land</div>
+            </div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <div class="hero-stat-label">Förderung</div>
+              <div class="hero-stat-value">PJ, Blockpraktikum & Forschung</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Über uns kurz -->
+    <section style="background: var(--warm-white);">
+      <div class="section-inner">
+        <div class="section-label">Über uns</div>
+        <h2 class="section-title">Was wir tun</h2>
+        <p class="section-body">
+          Unter dem Motto <strong>„HAUSARZT lernen auf dem Land"</strong> hat es sich der Verein zur Aufgabe gemacht, 
+          studentischen Nachwuchs an den bayerischen medizinischen Fakultäten zu unterstützen — damit möglichst viele 
+          zukünftige Ärztinnen und Ärzte den hausärztlichen Alltag vor Ort kennen- und schätzenlernen.
+        </p>
+        <div class="motto-banner">
+          <strong>„HAUSARZT lernen auf dem Land"</strong>
+          <p>Unser Leitgedanke: Wer die Hausarztmedizin früh erlebt, entscheidet sich häufiger für sie.</p>
+        </div>
+        <div class="card-grid">
+          <a class="card" href="#" onclick="showSection('verein'); return false;">
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+            <h3>Der Förderverein</h3>
+            <p>Geschichte, Ziele und Aufgaben unseres Vereins im Überblick.</p>
+            <div class="card-arrow">Mehr lesen →</div>
+          </a>
+          <a class="card" href="#" onclick="showSection('vorstand'); return false;">
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <h3>Vorstandschaft</h3>
+            <p>Lernen Sie unsere Vorstandsmitglieder kennen.</p>
+            <div class="card-arrow">Mehr lesen →</div>
+          </a>
+          <a class="card" href="#" onclick="showSection('beirat'); return false;">
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+            <h3>Wissenschaftlicher Beirat</h3>
+            <p>Fachliche Begleitung durch renommierte Expertinnen und Experten.</p>
+            <div class="card-arrow">Mehr lesen →</div>
+          </a>
+          <a class="card" href="#" onclick="showSection('beitritt'); return false;">
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg></div>
+            <h3>Mitglied werden</h3>
+            <p>Unterstützen Sie uns – als Studierende/r, Ärztin/Arzt oder Förderer.</p>
+            <div class="card-arrow">Jetzt beitreten →</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section style="background: var(--cream);">
+      <div class="section-inner">
+        <div class="join-section">
+          <h2>Gemeinsam für die Hausarztmedizin</h2>
+          <p>Werden Sie Teil unseres Fördervereins und helfen Sie mit, den ärztlichen Nachwuchs für die hausärztliche Versorgung in Bayern zu begeistern.</p>
+          <a href="#" class="btn-primary" onclick="showSection('beitritt'); return false;">
+            Jetzt Mitglied werden
+          </a>
+          <a href="#" class="btn-secondary" onclick="showSection('kontakt'); return false;">
+            Kontakt aufnehmen
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- end home -->
+
+
+  <!-- ── FÖRDERVEREIN ── -->
+  <div id="section-verein" class="content-section">
+    <section>
+      <div class="section-inner">
+        <div class="section-label">Über uns</div>
+        <h2 class="section-title">Der Förderverein</h2>
+        <div class="prose">
+          <p>
+            Der Verein <strong>„Förderung der Hausarztmedizin in Bayern e.V."</strong> wurde gegründet, 
+            um dem zunehmenden Mangel an Hausärztinnen und Hausärzten im ländlichen Raum entgegenzuwirken. 
+            Unser Ansatz: frühzeitige Begeisterung für die Allgemeinmedizin wecken.
+          </p>
+          <div class="motto-banner">
+            <strong>„HAUSARZT lernen auf dem Land"</strong>
+            <p>Unser Leitgedanke verbindet studentischen Nachwuchs mit der gelebten hausärztlichen Praxis vor Ort.</p>
+          </div>
+          <h3>Unsere Ziele</h3>
+          <ul>
+            <li>Förderung von PJ-Studierenden und Blockpraktikanten in Hausarztpraxen auf dem Land</li>
+            <li>Finanzielle Unterstützung für Unterkunft und Fahrkosten</li>
+            <li>Vernetzung von Studierenden mit erfahrenen Lehrärztinnen und -ärzten</li>
+            <li>Stärkung der Allgemeinmedizin als attraktives Berufsfeld</li>
+            <li>Förderung wissenschaftlicher Projekte im Bereich Allgemeinmedizin</li>
+          </ul>
+          <h3>Warum das wichtig ist</h3>
+          <p>
+            Bayern steht – wie viele andere Regionen – vor der Herausforderung einer drohenden hausärztlichen 
+            Unterversorgung, insbesondere in ländlichen Gebieten. Unser Verein möchte einen konkreten Beitrag leisten, 
+            indem wir Studierende motivieren, früh in die hausärztliche Versorgung hineinzuschnuppern.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  <!-- ── VORSTANDSCHAFT ── -->
+  <div id="section-vorstand" class="content-section">
+    <section>
+      <div class="section-inner">
+        <div class="section-label">Gremien</div>
+        <h2 class="section-title">Vorstandschaft</h2>
+        <p class="section-body" style="margin-bottom: 0.5rem;">
+          Die Vorstandschaft des Fördervereins leitet die Vereinsgeschäfte ehrenamtlich 
+          und setzt sich aus engagierten Ärztinnen, Ärzten und Studierenden zusammen.
+        </p>
+        <p style="font-size:0.9rem; color:var(--text-light); margin-bottom:2rem;">
+          Bitte aktualisieren Sie diese Seite mit den aktuellen Vorstandsmitgliedern.
+        </p>
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-avatar">1. V</div>
+            <div class="team-name">1. Vorsitzende/r</div>
+            <div class="team-role">Vorstand</div>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar">2. V</div>
+            <div class="team-name">2. Vorsitzende/r</div>
+            <div class="team-role">Vorstand</div>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar">Sch</div>
+            <div class="team-name">Schatzmeister/in</div>
+            <div class="team-role">Vorstand</div>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar">Sek</div>
+            <div class="team-name">Sekretär/in</div>
+            <div class="team-role">Vorstand</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  <!-- ── WISSENSCHAFTLICHER BEIRAT ── -->
+  <div id="section-beirat" class="content-section">
+    <section>
+      <div class="section-inner">
+        <div class="section-label">Fachliche Begleitung</div>
+        <h2 class="section-title">Wissenschaftlicher Beirat</h2>
+        <p class="section-body">
+          Unser wissenschaftlicher Beirat berät den Vorstand in allen fachlichen Fragen und begleitet 
+          die wissenschaftlichen Aktivitäten des Vereins.
+        </p>
+        <p style="font-size:0.9rem; color:var(--text-light); margin-top:1rem;">
+          Bitte ergänzen Sie hier die Mitglieder des wissenschaftlichen Beirats.
+        </p>
+        <div class="team-grid" style="margin-top: 2rem;">
+          <div class="team-card">
+            <div class="team-avatar">W1</div>
+            <div class="team-name">Beiratsmitglied</div>
+            <div class="team-role">Wissenschaftlicher Beirat</div>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar">W2</div>
+            <div class="team-name">Beiratsmitglied</div>
+            <div class="team-role">Wissenschaftlicher Beirat</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  <!-- ── SATZUNG ── -->
+  <div id="section-satzung" class="content-section">
+    <section>
+      <div class="section-inner">
+        <div class="section-label">Rechtliches</div>
+        <h2 class="section-title">Satzung</h2>
+        <div class="prose">
+          <h3>§ 1 Name, Sitz, Geschäftsjahr</h3>
+          <p>Der Verein trägt den Namen „Förderung der Hausarztmedizin in Bayern e.V." und hat seinen Sitz in Bayern. Das Geschäftsjahr ist das Kalenderjahr.</p>
+          <h3>§ 2 Zweck</h3>
+          <p>
+            Zweck des Vereins ist die Förderung von Wissenschaft und Forschung sowie der Bildung und Erziehung 
+            im Bereich der Hausarztmedizin. Der Verein verfolgt ausschließlich und unmittelbar gemeinnützige Zwecke 
+            im Sinne des Abschnitts „Steuerbegünstigte Zwecke" der Abgabenordnung.
+          </p>
+          <h3>§ 3 Mitgliedschaft</h3>
+          <p>
+            Mitglied des Vereins kann jede natürliche und juristische Person werden, die die Ziele des Vereins unterstützt.
+            Die Mitgliedschaft wird durch schriftlichen Antrag an den Vorstand beantragt.
+          </p>
+          <h3>§ 4 Organe des Vereins</h3>
+          <ul>
+            <li>Die Mitgliederversammlung</li>
+            <li>Der Vorstand</li>
+            <li>Der wissenschaftliche Beirat</li>
+          </ul>
+          <p style="margin-top: 1.5rem; font-style: italic; color: var(--text-light); font-size:0.9rem;">
+            Die vollständige Satzung erhalten Sie auf Anfrage beim Vorstand oder als Download (bitte PDF verlinken).
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  <!-- ── BEITRAGSORDNUNG ── -->
+  <div id="section-beitraege" class="content-section">
+    <section>
+      <div class="section-inner">
+        <div class="section-label">Mitgliedschaft</div>
+        <h2 class="section-title">Beitragsordnung</h2>
+        <div class="prose">
+          <p>Die Beitragsordnung regelt die Höhe der Mitgliedsbeiträge und wurde von der Mitgliederversammlung beschlossen.</p>
+          <div class="card-grid" style="margin-top:2rem;">
+            <div class="card" style="cursor:default;">
+              <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="2"/></svg></div>
+              <h3>Studierende</h3>
+              <p>Ermäßigter Beitrag für immatrikulierte Medizinstudierende.</p>
+            </div>
+            <div class="card" style="cursor:default;">
+              <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <h3>Ordentliche Mitglieder</h3>
+              <p>Jahresbeitrag für Ärztinnen, Ärzte und weitere Unterstützer.</p>
+            </div>
+            <div class="card" style="cursor:default;">
+              <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+              <h3>Fördernde Mitglieder</h3>
+              <p>Juristische Personen, Praxen und Institutionen als Förderer.</p>
+            </div>
+          </div>
+          <p style="margin-top:2rem; font-style:italic; color:var(--text-light); font-size:0.9rem;">
+            Die genauen Beitragsbeträge entnehmen Sie bitte der offiziellen Beitragsordnung. 
+            Bei Fragen wenden Sie sich an den Vorstand.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  <!-- ── BEITRITTSERKLÄRUNG ── -->
+  <div id="section-beitritt" class="content-section">
+    <section>
+      <div class="section-inner">
+        <div class="section-label">Mitmachen</div>
+        <h2 class="section-title">Mitglied werden</h2>
+        <p class="section-body">
+          Sie möchten die Hausarztmedizin in Bayern aktiv fördern? Werden Sie Mitglied in unserem Verein!
+          Füllen Sie das Beitrittsformular aus und senden Sie es an unsere Adresse.
+        </p>
+        <div class="motto-banner" style="margin-top:2rem;">
+          <strong>So einfach geht's:</strong>
+          <p>Formular herunterladen → ausfüllen → per E-Mail oder Post einsenden. Wir melden uns bei Ihnen.</p>
+        </div>
+        <div style="margin-top: 2rem; display:flex; gap:1rem; flex-wrap:wrap;">
+          <a href="mailto:info@foerderverein-hausarzt.de" class="btn-primary" style="background:var(--green-mid);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Formular anfordern
+          </a>
+        </div>
+        <div class="prose" style="margin-top:2.5rem;">
+          <h3>Wer kann Mitglied werden?</h3>
+          <ul>
+            <li>Medizinstudierende (ermäßigter Beitrag)</li>
+            <li>Ärztinnen und Ärzte sowie andere Gesundheitsberufe</li>
+            <li>Interessierte Privatpersonen</li>
+            <li>Praxen, Kliniken und Institutionen als fördernde Mitglieder</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  <!-- ── KONTAKT / IMPRESSUM ── -->
+  <div id="section-kontakt" class="content-section">
+    <section>
+      <div class="section-inner">
+        <div class="section-label">Impressum & Kontakt</div>
+        <h2 class="section-title">Kontakt</h2>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem; margin-top:1.5rem; max-width:720px;" class="contact-grid">
+          <div>
+            <h3 style="font-family:'Lora',serif; color:var(--green-dark); margin-bottom:0.75rem; font-size:1.1rem;">Anschrift</h3>
+            <div class="prose">
+              <p>
+                Förderung der Hausarztmedizin in Bayern e.V.<br>
+                <span style="color:var(--text-light); font-size:0.9rem;">(Adresse bitte ergänzen)</span>
+              </p>
+            </div>
+          </div>
+          <div>
+            <h3 style="font-family:'Lora',serif; color:var(--green-dark); margin-bottom:0.75rem; font-size:1.1rem;">E-Mail</h3>
+            <div class="prose">
+              <p>
+                <a href="mailto:info@foerderverein-hausarzt.de" style="color:var(--green-mid);">info@foerderverein-hausarzt.de</a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="prose" style="margin-top:3rem;">
+          <h3>Impressum</h3>
+          <p>
+            <strong>Verantwortlich für den Inhalt (§ 55 Abs. 2 RStV):</strong><br>
+            Förderung der Hausarztmedizin in Bayern e.V.<br>
+            <span style="color:var(--text-light); font-size:0.9rem;">(Vorstand und vollständige Adresse bitte ergänzen)</span>
+          </p>
+          <h3>Haftungshinweis</h3>
+          <p style="font-size:0.9rem;">
+            Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. 
+            Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.
+          </p>
+          <p style="font-size:0.9rem; color:var(--text-light);">© 2025 Förderung der Hausarztmedizin in Bayern e.V.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Förderung der Hausarztmedizin in Bayern e.V.</div>
+      <div class="footer-copy">© 2025 · Alle Rechte vorbehalten</div>
+    </div>
+    <div class="footer-links">
+      <a href="#" onclick="showSection('verein'); return false;">Der Förderverein</a>
+      <a href="#" onclick="showSection('vorstand'); return false;">Vorstandschaft</a>
+      <a href="#" onclick="showSection('satzung'); return false;">Satzung</a>
+      <a href="#" onclick="showSection('beitritt'); return false;">Mitglied werden</a>
+      <a href="#" onclick="showSection('kontakt'); return false;">Impressum / Kontakt</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+    const el = document.getElementById('section-' + id);
+    if (el) {
+      el.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    // close mobile menu
+    document.getElementById('navLinks').classList.remove('open');
+  }
+
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  // Show home on logo click
+  document.querySelector('.nav-logo').addEventListener('click', function(e) {
+    e.preventDefault(); showSection('home');
+  });
+</script>
+
+</body>
+</html>
